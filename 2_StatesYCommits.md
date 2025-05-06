@@ -1,4 +1,4 @@
-# Resumen Git: Commits, Staging y Restauración
+# Commits, Staging y Restauración
 
 ## ¿Qué es un commit?
 Un commit es como una foto del proyecto en un momento específico. Guarda todos los cambios y los deja registrados con autor, fecha, etc. Es como tener un historial o álbum de todo lo que ha pasado en el código.
