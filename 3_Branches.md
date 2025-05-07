@@ -1,57 +1,51 @@
-# Ramas en Git
+# ramas en git y conflictos
 
-## ¿Qué es una rama?
+una rama es como una copia del proyecto para no romper nada mientras trabajas
+es como hacer una version separada pa no tocar el main
 
-Una rama es como una copia del proyecto donde puedes trabajar sin afectar la rama principal. Es útil para desarrollar nuevas ideas, probar cosas o hacer cambios sin romper nada. Después se puede juntar con el trabajo principal (la rama main).
+en equipos sirve pa que cada quien haga lo suyo y despues juntarlo
 
-En equipos, cada quien trabaja en su rama y al final se integran (si todo va bien). Esto ayuda a organizar el trabajo y no pisarse entre todos.
+![](assets/branches.png)
 
-> Ejemplo visual (ver imagen en `assets/branches.png`)
+# como se crean y eliminan
 
-## Crear, cambiar y borrar ramas
+- git branch mi-rama
+- git switch mi-rama
+- git switch -c mi-rama
 
-- Crear una rama: `git branch mi-rama`
-- Cambiar a la rama: `git switch mi-rama`
-- Crear y cambiar al mismo tiempo: `git switch -c mi-rama`
-- Ver rama actual: `git branch --show-current`
+pa borrar
 
-Si la quieres borrar:
+- git branch -d mi-rama si ya fue fusionada
+- git branch -D mi-rama si no fue pero igual la queres borrar
 
-- Si ya fue fusionada:
-  `git branch -d mi-rama`
-- Si no fue fusionada (a la fuerza):
-  `git branch -D mi-rama`
+# que es merge
 
-Git no deja borrar una rama sin fusionar para evitar que pierdas trabajo.
+merge sirve pa juntar los cambios de una rama con otra
 
-## ¿Qué es un merge?
+por ejemplo estas en main y haces
 
-El `merge` sirve para juntar los cambios de una rama con otra. Lo normal es estar en la rama `main` y correr:
+- git merge mi-rama
 
-```bash
-git merge mi-rama
-```
+si hay cambios en el mismo archivo git no sabe que parte dejar y ahi viene el conflicto
 
-Esto mete los cambios de `mi-rama` en `main`. Pero si hubo cambios en las mismas líneas de un archivo, vas a tener un conflicto.
+# conflictos
 
-## ¿Qué es un conflicto?
+cuando pasa eso git mete unas marcas raras en el archivo que vos no pusiste
 
-Un conflicto pasa cuando Git no sabe qué cambio mantener entre dos ramas. Te pone marcas en el archivo:
+asi:
 
-```diff
 <<<<<<< HEAD
-código que estaba en main
+cosas que estaban en main
 =======
-código que viene de la otra rama
->>>>>>> changes
-```
+cosas que vienen de la otra rama
+>>>>>>> rama
 
-Tienes que elegir con qué parte quedarte o unir ambas. Después de resolverlo, haces `git add archivo` y terminas con un commit.
+tenes que elegir cual parte dejar o unir las dos
 
-> Ver imagen ilustrativa en `assets/conflict.png`
+![](assets/conflict.png)
 
-## Consejos rápidos
+# tips
 
-- Siempre verifica que una rama fue mergeada antes de borrarla.
-- Lee los conflictos con calma antes de resolver.
-- Usa `git diff` para entender mejor los cambios.
+- no borres una rama si no estas seguro que fue fusionada
+- lee bien antes de resolver un conflicto
+- usa git diff pa ver mejor los cambios
